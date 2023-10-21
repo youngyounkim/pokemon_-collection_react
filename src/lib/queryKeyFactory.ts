@@ -1,4 +1,4 @@
-export const baseKey = {
-    base: [{ scope: 'baseKey' }] as const,
-    baseFactory: () => [{ ...baseKey.base[0], entity: 'baseKey' }]
+export const pokemonKey = {
+    base: [{ scope: 'pokemonKey' }] as const,
+    pokemonListKey: () => [{ ...pokemonKey.base[0], entity: 'pokemonKey' }]
 };
