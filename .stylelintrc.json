@@ -1,0 +1,79 @@
+{
+    "extends": [],
+    "plugins": [],
+    "rules": {
+        "font-family-no-missing-generic-family-keyword": [
+            true,
+            {
+                "ignoreFontFamilies": ["Pretendard"]
+            }
+        ],
+        "selector-pseudo-class-no-unknown": [
+            true,
+            {
+                "ignorePseudoClasses": ["global"]
+            }
+        ],
+        "selector-class-pattern": [
+            "^(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:\\[.+\\])?$",
+            {
+                "resolveNestedSelectors": true
+            }
+        ],
+        "order/properties-order": [
+            [
+                {
+                    "groupName": "dimensions",
+                    "properties": ["min-width", "max-width", "width", "min-height", "max-height", "height"]
+                },
+                {
+                    "groupName": "padding",
+                    "properties": ["padding", "padding-top", "padding-right", "padding-bottom", "padding-left"]
+                },
+                {
+                    "groupName": "margin",
+                    "properties": ["margin", "margin-top", "margin-right", "margin-bottom", "margin-left"]
+                },
+                {
+                    "groupName": "position",
+                    "properties": ["position", "top", "right", "left", "bottom"]
+                },
+                {
+                    "groupName": "font",
+                    "properties": ["color", "font", "font-size", "font-weight", "font-family", "line-height", "letter-spacing", "text-decoration"]
+                },
+                {
+                    "groupName": "background",
+                    "properties": ["background", "background-color", "background-image", "background-size", "background-position"]
+                },
+                {
+                    "groupName": "transition",
+                    "properties": ["transition", "transition-property", "transition-duration", "transition-timing-function", "transition-delay"]
+                },
+                {
+                    "groupName": "transform",
+                    "properties": [
+                        "translate",
+                        "transform",
+                        "transform-translateX",
+                        "transform-translateY",
+                        "transform-scale",
+                        "transform-scaleX",
+                        "transform-scaleY",
+                        "transform-skew",
+                        "transform-skewX",
+                        "transform-skewY",
+                        "transform-rotate"
+                    ]
+                },
+                {
+                    "groupName": "display",
+                    "properties": ["display", "flex", "flex-direction", "flex-wrap", "justify-content", "align-items"]
+                }
+            ],
+            {
+                "unspecified": "bottomAlphabetical"
+            }
+        ]
+    }
+}
