@@ -4,7 +4,7 @@ import { pokemonKey } from 'lib/queryKeyFactory';
 import { PokemonSpeciesType } from 'types/types';
 import { getApi } from 'lib/axios';
 import { useEffect, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { namesState } from 'lib/recoil/namesState';
 
 const useGetPokemonNames = () => {

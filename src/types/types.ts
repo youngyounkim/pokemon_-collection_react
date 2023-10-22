@@ -7,11 +7,11 @@ export type PokemonListItemType = {
     krName: string | undefined;
 };
 
-export type PokemonResult = {
+export type PokemonListResponse = {
     count: number;
     next: string;
     previous: null;
-    results: [PokemonListItemType];
+    results: PokemonListItemType[];
 };
 
 export type PokemonSpeciesType = {

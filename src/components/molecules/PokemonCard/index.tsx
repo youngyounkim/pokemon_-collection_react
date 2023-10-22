@@ -5,9 +5,17 @@ type PokemonCardProps = {
 };
 
 const PokemonCard = ({ item }: PokemonCardProps) => {
-    // const { data } = useGetPokemonDetail(item.name);
-    // console.log(data);
-    return <li></li>;
+    return (
+        <li>
+            <h3>{item.krName ? item.krName : item.name}</h3>
+            {item.id && (
+                <img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`}
+                    alt={`${item.krName ? item.krName : item.name}의 이미지`}
+                />
+            )}
+        </li>
+    );
 };
 
 export default PokemonCard;

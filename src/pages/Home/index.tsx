@@ -5,7 +5,7 @@ import useGetPokemonList from 'models/useGetPokemonList';
 const Home = () => {
     const { nameList } = useGetPokemonNames();
     const { data: pokemonItems, fetchNextPage } = useGetPokemonList(nameList);
-    console.log('pokemonItems', pokemonItems);
+
     return (
         <div className="">
             <PokemonList pokemonItems={pokemonItems?.pages} />

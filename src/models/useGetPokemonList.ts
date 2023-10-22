@@ -1,13 +1,15 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, InfiniteData } from 'react-query';
 import { pokemonKey } from 'lib/queryKeyFactory';
-import { PokemonResult } from 'types/types';
+import { PokemonListResponse } from 'types/types';
 import { getApi } from 'lib/axios';
 import { NamesStateType } from 'lib/recoil/namesState';
+import { AxiosResponse } from 'axios';
 
 const useGetPokemonList = (nameList: NamesStateType[]) => {
     const { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery<
-        PokemonResult,
-        Error
+        PokemonListResponse,
+        Error,
+        PokemonListResponse
     >(
         pokemonKey.pokemonListKey(),
         ({ pageParam }) => getApi(`/pokemon/?limit=20&offset=${pageParam}`).then((data) => data.data),
@@ -21,12 +23,15 @@ const useGetPokemonList = (nameList: NamesStateType[]) => {
             select: (data) => {
                 return {
                     ...data,
-                    result: data?.pages.map((el) => {
-                        return el.results.map((el) => {
-                            const url = el.url.split('/');
-                            const nameData = nameList.find((item) => item.id === Number(url[6]));
-                            return { ...el, krName: nameData?.name, id: nameData?.id };
-                        });
+                    pages: data.pages.map((el) => {
+                        return {
+                            ...el,
+                            results: el.results.map((el) => {
+                                const url = el.url.split('/');
+                                const nameData = nameList.find((item) => item.id === Number(url[6]));
+                                return { ...el, krName: nameData?.name, id: nameData?.id };
+                            })
+                        };
                     })
                 };
             }

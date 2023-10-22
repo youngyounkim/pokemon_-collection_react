@@ -1,8 +1,8 @@
 import PokemonCard from 'components/molecules/PokemonCard';
-import { PokemonResult } from 'types/types';
+import { PokemonListResponse } from 'types/types';
 
 type ButtonProps = {
-    pokemonItems: PokemonResult[] | undefined;
+    pokemonItems: PokemonListResponse[] | undefined;
 };
 
 const PokemonList = ({ pokemonItems }: ButtonProps) => {
