@@ -1,8 +1,23 @@
-import useGetPokemons from 'models/useGetPokemons';
+import PokemonList from 'components/template/PokemonList';
+import useGetPokemonNames from 'models/useGetPokemonNames';
+import useGetPokemonList from 'models/useGetPokemonList';
 
 const Home = () => {
-    const data = useGetPokemons();
-    return <div className="">base</div>;
+    const { nameList } = useGetPokemonNames();
+    const { data: pokemonItems, fetchNextPage } = useGetPokemonList(nameList);
+    console.log('pokemonItems', pokemonItems);
+    return (
+        <div className="">
+            <PokemonList pokemonItems={pokemonItems?.pages} />
+            <button
+                onClick={() => {
+                    fetchNextPage();
+                }}
+            >
+                다음 페이지
+            </button>
+        </div>
+    );
 };
 
 export default Home;

@@ -1,16 +1,16 @@
-import { Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { RecoilRoot } from "recoil";
-import Modal from "react-modal";
-import Home from "./pages/Home";
+import { Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { RecoilRoot } from 'recoil';
+import Modal from 'react-modal';
+import Home from './pages/Home';
 
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             retry: false,
-            refetchOnWindowFocus: false,
-        },
-    },
+            refetchOnWindowFocus: false
+        }
+    }
 });
 
 function App() {
@@ -25,6 +25,6 @@ function App() {
     );
 }
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 export default App;
