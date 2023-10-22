@@ -12,7 +12,7 @@ const useGetPokemonList = (nameList: NamesStateType[]) => {
         PokemonListResponse
     >(
         pokemonKey.pokemonListKey(),
-        ({ pageParam }) => getApi(`/pokemon/?limit=20&offset=${pageParam}`).then((data) => data.data),
+        ({ pageParam = 0 }) => getApi(`/pokemon/?limit=30&offset=${pageParam}`).then((data) => data.data),
         {
             enabled: nameList.length !== 0,
             getNextPageParam: (lastPage) => {

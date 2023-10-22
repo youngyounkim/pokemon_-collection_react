@@ -2,11 +2,16 @@ import { PokemonListItemType } from 'types/types';
 
 type PokemonCardProps = {
     item: PokemonListItemType;
+    handleDetailPage: (id: number) => void;
 };
 
-const PokemonCard = ({ item }: PokemonCardProps) => {
+const PokemonCard = ({ item, handleDetailPage }: PokemonCardProps) => {
     return (
-        <li>
+        <li
+            onClick={() => {
+                if (item.id) handleDetailPage(item.id);
+            }}
+        >
             <h3>{item.krName ? item.krName : item.name}</h3>
             {item.id && (
                 <img
