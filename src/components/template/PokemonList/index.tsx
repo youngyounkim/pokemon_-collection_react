@@ -1,4 +1,5 @@
 import PokemonCard from 'components/molecules/PokemonCard';
+import { memo } from 'react';
 import { PokemonListResponse } from 'types/types';
 
 type PokemonListProps = {
@@ -18,4 +19,4 @@ const PokemonList = ({ pokemonItems, handleDetailPage }: PokemonListProps) => {
     );
 };
 
-export default PokemonList;
+export default memo(PokemonList);

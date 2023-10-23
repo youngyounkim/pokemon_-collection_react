@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type SearchCardProps = {
     handleRoutePage: (id: number | undefined) => void;
     id: number | undefined;
@@ -18,4 +20,4 @@ const SearchCard = ({ handleRoutePage, id, name }: SearchCardProps) => {
     );
 };
 
-export default SearchCard;
+export default memo(SearchCard);

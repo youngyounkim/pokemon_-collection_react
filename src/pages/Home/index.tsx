@@ -1,20 +1,22 @@
 import PokemonList from 'components/template/PokemonList';
-import useGetPokemonNames from 'models/useGetPokemonNames';
 import useGetPokemonList from 'models/useGetPokemonList';
+import useGetPokemonInfinityList from 'models/useGetPokemonInfinityList';
+
 import { useNavigate } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import SearchHeader from 'components/template/SearchHeader';
 
 const Home = () => {
     const navigation = useNavigate();
-    const { pokemonList } = useGetPokemonNames();
+    const { pokemonList } = useGetPokemonList();
+
     const {
         data: pokemonItems,
         fetchNextPage,
         isFetching,
         isFetchingNextPage,
         isError
-    } = useGetPokemonList(pokemonList);
+    } = useGetPokemonInfinityList(pokemonList);
 
     const handleDetailPage = (id: number) => {
         navigation(`/detail/${id}`);
@@ -35,6 +37,7 @@ const Home = () => {
     const observer = useMemo(() => new IntersectionObserver(callback, options()), [callback, options]);
 
     useEffect(() => {
+        // targetRef가 화면에 포커스 될 때마다 list를 추가
         if (targetRef.current) observer.observe(targetRef.current);
     }, [observer]);
 
@@ -52,4 +55,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default memo(Home);

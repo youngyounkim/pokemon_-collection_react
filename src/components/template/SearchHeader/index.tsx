@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import useGetSearchList from 'hooks/useGetSearchList';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import SearchList from '../SearchList';
 
 const schema = yup
@@ -35,19 +35,22 @@ const SearchHeader = () => {
         }
     }, [searchWord, getSearchList]);
 
-    const onSubmit = () => {
+    const onSubmit = useCallback(() => {
         // 검색어와 제일 맞는 아이템은 0번째 index에 있으므로 해당 아이템으로 검색
         let searchId = searchList[0].id;
         navigation(`/detail/${searchId}`);
-    };
+    }, [searchList, navigation]);
 
-    const handleRoutePage = (id?: number) => {
-        navigation(`/detail/${id}`);
-    };
+    const handleRoutePage = useCallback(
+        (id?: number) => {
+            navigation(`/detail/${id}`);
+        },
+        [navigation]
+    );
 
-    const onFocus = () => {
-        setIsOpenSearchList(true);
-    };
+    const onFocus = useCallback(() => {
+        setIsOpenSearchList((data) => !data);
+    }, [setIsOpenSearchList]);
 
     useEffect(() => {
         const handleOutsideClose = (e: { target: any }) => {
@@ -62,6 +65,7 @@ const SearchHeader = () => {
     return (
         <header className="flex flex-col justify-center" ref={ref}>
             <img src="./pokemon_Logo.png" alt="포켓몬 로고" />
+            <h1 className="text-center text-2xl text-yellow-500 font-bold">포켓몬 도감</h1>
             <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
                 <Input
                     name="searchWord"
@@ -76,4 +80,4 @@ const SearchHeader = () => {
     );
 };
 
-export default SearchHeader;
+export default memo(SearchHeader);

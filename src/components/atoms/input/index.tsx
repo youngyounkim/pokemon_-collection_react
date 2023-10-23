@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Controller, Control, FieldErrors, FieldValues } from 'react-hook-form';
 
 type Props = {
@@ -34,4 +35,4 @@ const Input = ({ name, control, errorField, maxLength, placeholder = '', onFocus
     );
 };
 
-export default Input;
+export default memo(Input);

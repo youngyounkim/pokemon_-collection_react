@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { PokemonListItemType } from 'types/types';
 
 type PokemonCardProps = {
@@ -20,9 +21,9 @@ const PokemonCard = ({ item, handleDetailPage }: PokemonCardProps) => {
                     alt={`${item.krName ? item.krName : item.name}의 이미지`}
                 />
             )}
-            <h3 className=" text-lg text-zinc-800">{item.krName ? item.krName : item.name}</h3>
+            <h2 className=" text-lg text-zinc-800">{item.krName ? item.krName : item.name}</h2>
         </li>
     );
 };
 
-export default PokemonCard;
+export default memo(PokemonCard);

@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
-import Modal from 'react-modal';
 import Home from './pages/Home';
 import Detail from 'pages/Detail';
 
@@ -26,7 +25,5 @@ function App() {
         </QueryClientProvider>
     );
 }
-
-Modal.setAppElement('#root');
 
 export default App;

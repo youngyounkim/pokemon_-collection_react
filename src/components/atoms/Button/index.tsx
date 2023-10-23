@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type ButtonProps = {
     onClick: () => void;
     title: string;
@@ -11,4 +13,4 @@ const Button = ({ onClick, title }: ButtonProps) => {
     );
 };
 
-export default Button;
+export default memo(Button);

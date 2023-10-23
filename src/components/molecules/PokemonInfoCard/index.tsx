@@ -1,5 +1,5 @@
-import { PokemonListItemType } from 'types/types';
 import { Pokemon } from 'pokenode-ts';
+import { memo } from 'react';
 
 type PokemonInfoCardProps = {
     pokemonDetailData: Pokemon;
@@ -15,11 +15,11 @@ const PokemonInfoCard = ({ pokemonDetailData }: PokemonInfoCardProps) => {
             />
 
             <h2 className="text-lg font-bold">{pokemonDetailData.name}</h2>
-            <p>무게 :{pokemonDetailData.weight / 10}kg</p>
-            <p>키 :{pokemonDetailData.height / 10}m</p>
-            <p>도감 ID :{pokemonDetailData.id}</p>
+            <p>무게 : {pokemonDetailData.weight / 10}kg</p>
+            <p>키 : {pokemonDetailData.height / 10}m</p>
+            <p>도감 ID : {pokemonDetailData.id}</p>
         </div>
     );
 };
 
-export default PokemonInfoCard;
+export default memo(PokemonInfoCard);

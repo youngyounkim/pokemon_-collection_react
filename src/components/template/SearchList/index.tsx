@@ -1,5 +1,6 @@
 import SearchCard from 'components/molecules/SearchCard';
 import { PokemonListStateType } from 'lib/recoil/pokemonListState';
+import { memo } from 'react';
 
 type SearchListProps = {
     searchList: PokemonListStateType[];
@@ -18,4 +19,4 @@ const SearchList = ({ searchList, handleRoutePage }: SearchListProps) => {
     );
 };
 
-export default SearchList;
+export default memo(SearchList);
