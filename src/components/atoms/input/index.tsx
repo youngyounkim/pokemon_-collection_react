@@ -6,23 +6,25 @@ type Props = {
     errorField: FieldErrors<FieldValues>;
     placeholder?: string;
     maxLength?: number;
+    onFocus?: () => void;
 };
 
-const Input = ({ name, control, errorField, maxLength, placeholder = '' }: Props) => {
+const Input = ({ name, control, errorField, maxLength, placeholder = '', onFocus }: Props) => {
     return (
         <>
-            <div className="">
+            <div className="p-2 border border-slate-200 ">
                 <Controller
                     name={name}
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <input
-                            className=""
+                            className="w-full"
                             value={value}
                             onBlur={onBlur}
                             onChange={onChange}
                             maxLength={maxLength}
                             placeholder={placeholder}
+                            onFocus={onFocus}
                         />
                     )}
                 />

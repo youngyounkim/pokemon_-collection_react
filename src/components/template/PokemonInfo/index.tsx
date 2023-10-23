@@ -1,5 +1,5 @@
 import PokemonCard from 'components/molecules/PokemonCard';
-import { EvolutionListType, PokemonListResponse } from 'types/types';
+import { EvolutionListType } from 'types/types';
 import { Pokemon } from 'pokenode-ts';
 import PokemonInfoCard from 'components/molecules/PokemonInfoCard';
 

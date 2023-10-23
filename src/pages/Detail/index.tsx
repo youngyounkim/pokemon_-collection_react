@@ -19,7 +19,7 @@ const Detail = () => {
     );
 
     return (
-        <main className="">
+        <main className="w-full flex flex-col justify-center items-center">
             <PokemonInfo
                 pokemonDetailData={pokemonDetailData}
                 evolutionList={evolutionList}
