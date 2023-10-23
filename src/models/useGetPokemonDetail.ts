@@ -10,7 +10,7 @@ import { pokemonListState } from 'lib/recoil/pokemonListState';
 const useGetPokemonDetail = (id: number | string = 0) => {
     const pokemonList = useRecoilValue(pokemonListState);
 
-    const { data, isLoading } = useQuery<AxiosResponse<Pokemon>, Error, Pokemon>(
+    const { data, isLoading, isError } = useQuery<AxiosResponse<Pokemon>, Error, Pokemon>(
         pokemonKey.pokemonDetail(id),
         () => getApi(`/pokemon/${id}`),
         {
@@ -25,7 +25,7 @@ const useGetPokemonDetail = (id: number | string = 0) => {
         }
     );
 
-    return { data, isLoading };
+    return { data, isLoading, isError };
 };
 
 export default useGetPokemonDetail;

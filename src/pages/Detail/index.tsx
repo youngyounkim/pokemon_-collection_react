@@ -8,8 +8,17 @@ const Detail = () => {
     const navigation = useNavigate();
     const param = useParams();
 
-    const { data: pokemonDetailData, isLoading: detailIsLoading } = useGetPokemonDetail(param.id);
-    const { data: evolutionList, isLoading, isError } = useGetEvolutionChain(param.id);
+    const {
+        data: pokemonDetailData,
+        isLoading: isDetailLoading,
+        isError: isDetailError
+    } = useGetPokemonDetail(param.id);
+
+    const {
+        data: evolutionList,
+        isLoading: isEvolutionLoading,
+        isError: isEvolutionError
+    } = useGetEvolutionChain(param.id);
 
     const handleDetailPage = useCallback(
         (id: number) => {
@@ -20,11 +29,17 @@ const Detail = () => {
 
     return (
         <main className="w-full flex flex-col justify-center items-center">
-            <PokemonInfo
-                pokemonDetailData={pokemonDetailData}
-                evolutionList={evolutionList?.filter((el) => el.id !== Number(param.id))}
-                handleDetailPage={handleDetailPage}
-            />
+            {isDetailError || isEvolutionError ? (
+                <p>문제가 발생했습니다. 잠시 후에 다시 시도해주세요</p>
+            ) : isDetailLoading && isEvolutionLoading ? (
+                <p>잠시만 기다려주세요</p>
+            ) : (
+                <PokemonInfo
+                    pokemonDetailData={pokemonDetailData}
+                    evolutionList={evolutionList?.filter((el) => el.id !== Number(param.id))}
+                    handleDetailPage={handleDetailPage}
+                />
+            )}
         </main>
     );
 };
