@@ -11,12 +11,16 @@ type PokemonInfoProps = {
 
 const PokemonInfo = ({ pokemonDetailData, evolutionList, handleDetailPage }: PokemonInfoProps) => {
     return (
-        <section>
+        <section className="flex flex-col justify-center items-center">
+            <h1 className="text-2xl font-bold mt-16 text-yellow-400">포켓몬 상세 정보</h1>
             {pokemonDetailData && <PokemonInfoCard pokemonDetailData={pokemonDetailData} />}
-            {evolutionList &&
-                evolutionList.map((el, idx) => (
-                    <PokemonCard key={`${idx}${el.name}`} handleDetailPage={handleDetailPage} item={el} />
-                ))}
+            <p className="my-4 text-xl font-bold">진화 정보</p>
+            <ul className="w-[500px] flex flex-wrap gap-3 justify-center">
+                {evolutionList &&
+                    evolutionList.map((el, idx) => (
+                        <PokemonCard key={`${idx}${el.name}`} handleDetailPage={handleDetailPage} item={el} />
+                    ))}
+            </ul>
         </section>
     );
 };

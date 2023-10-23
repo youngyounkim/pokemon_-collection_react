@@ -18,7 +18,7 @@ const useGetEvolutionChain = (id: string | undefined) => {
         return { name, id: getId(url), krName: pokemonList.find((item) => item.id === getId(url))?.name };
     };
 
-    const { data } = useQuery<EvolutionChain, Error, EvolutionListType>(
+    const { data, isLoading, isError } = useQuery<EvolutionChain, Error, EvolutionListType>(
         pokemonKey.evolutionChain(chainId),
         () => getApi(`/evolution-chain/${chainId}`).then((data) => data.data),
         {
@@ -42,7 +42,7 @@ const useGetEvolutionChain = (id: string | undefined) => {
             }
         }
     );
-    return { data };
+    return { data, isLoading, isError };
 };
 
 export default useGetEvolutionChain;
