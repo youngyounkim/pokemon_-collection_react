@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# 프로젝트 명
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+포켓몬 도감
 
-## Available Scripts
+# 프로젝트 목표 & 의도
 
-In the project directory, you can run:
+-   포켓몬 api를 이용하여 원하는 포켓몬 정보를 확인할 수 있는 프로젝트
+-   검색 기능을 제공하여 id나 이름으로 검색할 수 있도록 함
+-   검색 시 포켓몬 도감에 있는 포켓몬의 id와 이름을 리스트로 출력하여 검색 가이드를 제공
+-   포켓몬 리스트는 무한 스크롤을 제공하여 끊기지 않고 계속 확인할 수 있도록 제작
+-   포켓몬 상세 페이지에서는 포켓몬의 기본 정보와 진화 정보를 출력
 
-### `npm start`
+# 폴더 구조
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+📦src<br/>
+┣ 📂components<br/>
+┃ ┣ 📂atoms<br/>
+┃ ┃ ┣ 📂Button<br/>
+┃ ┃ ┗ 📂input<br/>
+┃ ┣ 📂molecules<br/>
+┃ ┃ ┣ 📂PokemonCard<br/>
+┃ ┃ ┣ 📂PokemonInfoCard<br/>
+┃ ┃ ┗ 📂SearchCard<br/>
+┃ ┗ 📂template<br/>
+┃   ┣ 📂PokemonInfo<br/>
+┃   ┣ 📂PokemonList<br/>
+┃   ┣ 📂SearchHeader<br/>
+┃   ┗ 📂SearchList<br/>
+┣ 📂hooks<br/>
+┣ 📂lib<br/>
+┃ ┣ 📂axios<br/>
+┃ ┗ 📂recoil<br/>
+┣ 📂models<br/>
+┣ 📂pages<br/>
+┃ ┣ 📂Detail<br/>
+┃ ┗ 📂Home<br/>
+┣ 📂types<br/>
+┗ 📂util
