@@ -5,7 +5,7 @@ import { getApi } from 'lib/axios';
 import { PokemonListStateType } from 'lib/recoil/pokemonListState';
 
 const useGetPokemonList = (pokemonList: PokemonListStateType[]) => {
-    const { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery<
+    const { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage, isError } = useInfiniteQuery<
         PokemonListResponse,
         Error,
         PokemonListResponse
@@ -37,7 +37,7 @@ const useGetPokemonList = (pokemonList: PokemonListStateType[]) => {
         }
     );
 
-    return { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage };
+    return { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage, isError };
 };
 
 export default useGetPokemonList;
