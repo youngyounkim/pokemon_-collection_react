@@ -2,7 +2,7 @@ import { useQueries, UseQueryOptions } from 'react-query';
 import { pokemonKey } from 'lib/queryKeyFactory';
 import { PokemonSpecies } from 'pokenode-ts';
 import { getApi } from 'lib/axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { pokemonListState } from 'lib/recoil/pokemonListState';
 
@@ -10,7 +10,7 @@ const useGetPokemonList = () => {
     const [pokemonList, setPokemonList] = useRecoilState(pokemonListState);
 
     // 포켓몬 도감상 존재하는 포켓몬들의 수 만큼 queryFn과 key값을 만드는 함수
-    const getQueries = () => {
+    const getQueries = useMemo(() => {
         const result = [];
         for (let index = 1; index <= 1017; index++) {
             result.push({
@@ -21,11 +21,11 @@ const useGetPokemonList = () => {
             });
         }
         return result;
-    };
+    }, []);
 
-    const [PokemonNameList] = useState(getQueries());
+    const [pokemonQueryList] = useState(getQueries);
 
-    const speciesData = useQueries<UseQueryOptions<PokemonSpecies, Error>[]>(PokemonNameList);
+    const speciesData = useQueries<UseQueryOptions<PokemonSpecies, Error>[]>(pokemonQueryList);
 
     useEffect(() => {
         if (speciesData[1016] && speciesData[1016].status === 'success' && pokemonList.length === 0) {
