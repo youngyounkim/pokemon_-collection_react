@@ -1,5 +1,9 @@
 import { atom } from 'recoil';
 
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
+
 export type NamesStateType = {
     id: number | undefined;
     name: string | undefined;
@@ -8,5 +12,6 @@ export type NamesStateType = {
 
 export const namesState = atom<NamesStateType[]>({
     key: 'namesState',
-    default: []
+    default: [],
+    effects_UNSTABLE: [persistAtom]
 });
