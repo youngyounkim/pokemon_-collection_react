@@ -2,9 +2,9 @@ import { useInfiniteQuery } from 'react-query';
 import { pokemonKey } from 'lib/queryKeyFactory';
 import { PokemonListResponse } from 'types/types';
 import { getApi } from 'lib/axios';
-import { NamesStateType } from 'lib/recoil/namesState';
+import { PokemonListStateType } from 'lib/recoil/pokemonListState';
 
-const useGetPokemonList = (nameList: NamesStateType[]) => {
+const useGetPokemonList = (pokemonList: PokemonListStateType[]) => {
     const { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery<
         PokemonListResponse,
         Error,
@@ -13,7 +13,7 @@ const useGetPokemonList = (nameList: NamesStateType[]) => {
         pokemonKey.pokemonListKey(),
         ({ pageParam = 0 }) => getApi(`/pokemon/?limit=30&offset=${pageParam}`).then((data) => data.data),
         {
-            enabled: nameList.length !== 0,
+            enabled: pokemonList.length !== 0,
             getNextPageParam: (lastPage) => {
                 const { next }: any = lastPage;
                 if (!next) return undefined;
@@ -27,7 +27,7 @@ const useGetPokemonList = (nameList: NamesStateType[]) => {
                             ...el,
                             results: el.results.map((el) => {
                                 const url = el.url.split('/');
-                                const nameData = nameList.find((item) => item.id === Number(url[6]));
+                                const nameData = pokemonList.find((item) => item.id === Number(url[6]));
                                 return { ...el, krName: nameData?.name, id: nameData?.id };
                             })
                         };

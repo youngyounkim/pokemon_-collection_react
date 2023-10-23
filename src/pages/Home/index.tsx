@@ -6,8 +6,8 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 const Home = () => {
     const navigation = useNavigate();
-    const { nameList } = useGetPokemonNames();
-    const { data: pokemonItems, fetchNextPage } = useGetPokemonList(nameList);
+    const { pokemonList } = useGetPokemonNames();
+    const { data: pokemonItems, fetchNextPage } = useGetPokemonList(pokemonList);
 
     const handleDetailPage = (id: number) => {
         navigation(`/detail/${id}`);

@@ -4,18 +4,18 @@ import { pokemonKey } from 'lib/queryKeyFactory';
 import { useQuery } from 'react-query';
 import { EvolutionChain, ChainLink } from 'pokenode-ts';
 import { useRecoilValue } from 'recoil';
-import { namesState } from 'lib/recoil/namesState';
+import { pokemonListState } from 'lib/recoil/pokemonListState';
 import { getId } from 'util/utilFn';
 import { EvolutionListType } from 'types/types';
 
 const useGetEvolutionChain = (id: string | undefined) => {
-    const pokemonNames = useRecoilValue(namesState);
-    const evolutionUrl = pokemonNames.find((names) => names.id === Number(id))?.evolutionUrl;
+    const pokemonList = useRecoilValue(pokemonListState);
+    const evolutionUrl = pokemonList.find((item) => item.id === Number(id))?.evolutionUrl;
 
     const chainId = getId(evolutionUrl);
 
     const getIdAndName = (name: string, url: string) => {
-        return { name, id: getId(url), krName: pokemonNames.find((data) => data.id === getId(url))?.name };
+        return { name, id: getId(url), krName: pokemonList.find((item) => item.id === getId(url))?.name };
     };
 
     const { data } = useQuery<EvolutionChain, Error, EvolutionListType>(

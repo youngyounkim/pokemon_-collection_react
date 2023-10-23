@@ -5,10 +5,10 @@ import { useQuery } from 'react-query';
 import { Pokemon } from 'pokenode-ts';
 import { AxiosResponse } from 'axios';
 import { useRecoilValue } from 'recoil';
-import { namesState } from 'lib/recoil/namesState';
+import { pokemonListState } from 'lib/recoil/pokemonListState';
 
 const useGetPokemonDetail = (id: number | string = 0) => {
-    const pokemonNames = useRecoilValue(namesState);
+    const pokemonList = useRecoilValue(pokemonListState);
 
     const { data, isLoading } = useQuery<AxiosResponse<Pokemon>, Error, Pokemon>(
         pokemonKey.pokemonDetail(id),
@@ -16,7 +16,7 @@ const useGetPokemonDetail = (id: number | string = 0) => {
         {
             select: (data) => {
                 const result = { ...data.data };
-                const krName = pokemonNames.find((names) => names.id === Number(id))?.name;
+                const krName = pokemonList.find((item) => item.id === Number(id))?.name;
                 if (krName) {
                     result.name = krName;
                 }

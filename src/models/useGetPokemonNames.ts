@@ -5,10 +5,10 @@ import { PokemonSpecies } from 'pokenode-ts';
 import { getApi } from 'lib/axios';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { namesState } from 'lib/recoil/namesState';
+import { pokemonListState } from 'lib/recoil/pokemonListState';
 
 const useGetPokemonNames = () => {
-    const [nameList, setNameList] = useRecoilState(namesState);
+    const [pokemonList, setPokemonList] = useRecoilState(pokemonListState);
 
     // 포켓몬 도감상 존재하는 포켓몬들의 수 만큼 queryFn과 key값을 만드는 함수
     const getQueries = () => {
@@ -29,7 +29,7 @@ const useGetPokemonNames = () => {
     const speciesData = useQueries<UseQueryOptions<PokemonSpecies, Error>[]>(PokemonNameList);
 
     useEffect(() => {
-        if (speciesData[1016] && speciesData[1016].status === 'success' && nameList.length === 0) {
+        if (speciesData[1016] && speciesData[1016].status === 'success' && pokemonList.length === 0) {
             const nameArr = speciesData.map((el) => {
                 return {
                     id: el.data?.id,
@@ -37,11 +37,11 @@ const useGetPokemonNames = () => {
                     evolutionUrl: el.data?.evolution_chain.url
                 };
             });
-            setNameList(nameArr);
+            setPokemonList(nameArr);
         }
-    }, [speciesData, setNameList, nameList.length]);
+    }, [speciesData, setPokemonList, pokemonList.length]);
 
-    return { nameList };
+    return { pokemonList };
 };
 
 export default useGetPokemonNames;
