@@ -13,3 +13,9 @@ export type PokemonListResponse = {
     previous: null;
     results: PokemonListItemType[];
 };
+
+export type EvolutionListType = {
+    name: string;
+    id: number;
+    krName: string | undefined;
+}[];

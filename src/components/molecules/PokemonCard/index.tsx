@@ -1,7 +1,7 @@
 import { PokemonListItemType } from 'types/types';
 
 type PokemonCardProps = {
-    item: PokemonListItemType;
+    item: Omit<PokemonListItemType, 'url'>;
     handleDetailPage: (id: number) => void;
 };
 

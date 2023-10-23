@@ -6,11 +6,7 @@ import { EvolutionChain, ChainLink } from 'pokenode-ts';
 import { useRecoilValue } from 'recoil';
 import { namesState } from 'lib/recoil/namesState';
 import { getId } from 'util/utilFn';
-
-type EvolutionListType = {
-    name: string;
-    id: number;
-}[];
+import { EvolutionListType } from 'types/types';
 
 const useGetEvolutionChain = (id: string | undefined) => {
     const pokemonNames = useRecoilValue(namesState);
@@ -19,7 +15,7 @@ const useGetEvolutionChain = (id: string | undefined) => {
     const chainId = getId(evolutionUrl);
 
     const getIdAndName = (name: string, url: string) => {
-        return { name, id: getId(url) };
+        return { name, id: getId(url), krName: pokemonNames.find((data) => data.id === getId(url))?.name };
     };
 
     const { data } = useQuery<EvolutionChain, Error, EvolutionListType>(

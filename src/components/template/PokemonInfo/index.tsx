@@ -1,20 +1,23 @@
 import PokemonCard from 'components/molecules/PokemonCard';
-import { PokemonListResponse } from 'types/types';
+import { EvolutionListType, PokemonListResponse } from 'types/types';
+import { Pokemon } from 'pokenode-ts';
+import PokemonInfoCard from 'components/molecules/PokemonInfoCard';
 
-type ButtonProps = {
-    pokemonItems: PokemonListResponse[] | undefined;
+type PokemonInfoProps = {
+    pokemonDetailData: Pokemon | undefined;
+    evolutionList: EvolutionListType | undefined;
     handleDetailPage: (id: number) => void;
 };
 
-const PokemonInfo = ({ pokemonItems, handleDetailPage }: ButtonProps) => {
+const PokemonInfo = ({ pokemonDetailData, evolutionList, handleDetailPage }: PokemonInfoProps) => {
     return (
-        <ul>
-            {pokemonItems?.map((el) => {
-                return el.results.map((item, idx) => (
-                    <PokemonCard key={`${idx}${item.name}`} item={item} handleDetailPage={handleDetailPage} />
-                ));
-            })}
-        </ul>
+        <section>
+            {pokemonDetailData && <PokemonInfoCard pokemonDetailData={pokemonDetailData} />}
+            {evolutionList &&
+                evolutionList.map((el, idx) => (
+                    <PokemonCard key={`${idx}${el.name}`} handleDetailPage={handleDetailPage} item={el} />
+                ))}
+        </section>
     );
 };
 
