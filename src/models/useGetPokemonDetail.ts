@@ -6,11 +6,11 @@ import { Pokemon } from 'pokenode-ts';
 import { AxiosResponse } from 'axios';
 
 const useGetPokemonDetail = (id: number | string = 0) => {
-    const { data } = useQuery<AxiosResponse<Pokemon>, Error, Pokemon>(pokemonKey.pokemonDetail(id), () =>
+    const { data, isLoading } = useQuery<AxiosResponse<Pokemon>, Error, Pokemon>(pokemonKey.pokemonDetail(id), () =>
         getApi(`/pokemon/${id}`).then((data) => data.data)
     );
 
-    return { data };
+    return { data, isLoading };
 };
 
 export default useGetPokemonDetail;

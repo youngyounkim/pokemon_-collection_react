@@ -33,7 +33,8 @@ const useGetPokemonNames = () => {
             const nameArr = speciesData.map((el) => {
                 return {
                     id: el.data?.id,
-                    name: el.data?.names[2].name
+                    name: el.data?.names[2].name,
+                    evolutionUrl: el.data?.evolution_chain.url
                 };
             });
             setNameList(nameArr);

@@ -1,9 +1,8 @@
-import { useInfiniteQuery, InfiniteData } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { pokemonKey } from 'lib/queryKeyFactory';
 import { PokemonListResponse } from 'types/types';
 import { getApi } from 'lib/axios';
 import { NamesStateType } from 'lib/recoil/namesState';
-import { AxiosResponse } from 'axios';
 
 const useGetPokemonList = (nameList: NamesStateType[]) => {
     const { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery<
