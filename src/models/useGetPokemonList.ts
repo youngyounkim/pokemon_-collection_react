@@ -1,4 +1,3 @@
-// useQueres 사용해서 배열 받으면 배열 반복문 돌면서 가져온 데이터 매핑해서 디테일한 테이터로 전달하게 하자!
 import { useQueries, UseQueryOptions } from 'react-query';
 import { pokemonKey } from 'lib/queryKeyFactory';
 import { PokemonSpecies } from 'pokenode-ts';

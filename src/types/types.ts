@@ -1,5 +1,3 @@
-export type ModelType = {};
-
 export type PokemonListItemType = {
     name: string;
     url: string;
