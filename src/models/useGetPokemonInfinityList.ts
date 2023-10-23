@@ -3,6 +3,7 @@ import { pokemonKey } from 'lib/queryKeyFactory';
 import { PokemonListResponse } from 'types/types';
 import { getApi } from 'lib/axios';
 import { PokemonListStateType } from 'lib/recoil/pokemonListState';
+import { getId } from 'util/utilFn';
 
 const useGetPokemonInfinityList = (pokemonList: PokemonListStateType[]) => {
     const { data, hasPreviousPage, fetchNextPage, isFetching, isFetchingNextPage, isError } = useInfiniteQuery<
@@ -26,8 +27,8 @@ const useGetPokemonInfinityList = (pokemonList: PokemonListStateType[]) => {
                         return {
                             ...el,
                             results: el.results.map((el) => {
-                                const url = el.url.split('/');
-                                const nameData = pokemonList.find((item) => item.id === Number(url[6]));
+                                const url = getId(el.url);
+                                const nameData = pokemonList.find((item) => item.id === url);
                                 return { ...el, krName: nameData?.name, id: nameData?.id };
                             })
                         };
